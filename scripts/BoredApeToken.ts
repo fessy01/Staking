@@ -1,12 +1,14 @@
 import { ethers } from "hardhat";
 
 async function main() {
+    const [owner, addr1] = await ethers.getSigners();
+    console.log(owner.address, addr1.address);
     const BoredApeToken = await ethers.getContractFactory("BoredApeToken");
-  const boredApeToken = await BoredApeToken.deploy("BoredApeToken" , "BRT");
-
-  await boredApeToken.deployed();
-
-  console.log("Greeter deployed to:", boredApeToken.address);
+    const boredApeToken = await BoredApeToken.deploy();
+  
+    await boredApeToken.deployed();
+  
+    console.log("BoredApeToken deployed to:", boredApeToken.address);
 }
 
 main().catch((error) => {
